@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="manifest" href="manifest.json"></link>
+    <title>Fifa 15 Auction</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#01579b">
+</head>
+
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <nav class="nav-extended" style="background:#424242;position:fixed;">
+
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent" style="text-align:center;margin:0 auto;">
+                <li class="tab"><a class="active" href="#test1">Chat</a></li>
+                <li class="tab"><a href="#test2">Auction</a></li>
+                <li class="tab"><a href="#test4">Players</a></li>
+                <li class="tab"><a href="#test5">Call Order</a></li>
+                <li class="tab"><a href="#test6">Add Players</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="test1" class="col s12">
+        <div class="container" style="height:3rem;">
+        </div>
+        <div class="">
+            <div id="login" class="login-button">
+                <button class="waves-effect waves-light btn" style="background:#424242;margin-bottom:3rem;" onclick="googleSignin()">Login Using Google</button>
+            </div>
+        </div>
+        <div id="chat" class="scroll-div" style="display:none;overflow:auto;max-width:480px;text-align:center;margin:0 auto;margin-bottom:-.5rem;">
+            <a class="signOut" onclick="googleSignout()"><i class="material-icons signOut-button">power_settings_new</i></a>
+            <form style="padding-bottom:16rem !important;padding:1rem;">
+                <div ng-repeat="list in posts">
+
+                    <p style="width:100%;background:#fff;color:#424242;padding:5px;border-radius:5px;text-align:left;padding-left:1rem;box-shadow:0px 2px 2px 0px rgba(0,0,0,0.12)"><a class="avatar">{{list.UserName}}</a></br>{{list.Message}}</br><a class="date">{{list.createdDate}}</a>
+                    </p>
+                </div>
+            </form>
+
+            <center>
+                <div style="padding-left: 1rem;position:fixed;bottom:0;max-width: 480px;width: 100%;padding-right: 1rem;">
+                    <a id="send" onclick="push()" style="float: right;background: #424242;border: none;border-radius: 8px;color: #fff;padding: 10px;width: 80px;box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.2);"><i class="material-icons" style="vertical-align:middle">send</i></a>
+                    <div style="overflow: hidden; padding-right: .5em;">
+                        <input id="chat_text" onclick="scrollDown()" type="text" style="width: 95%;background: #fff;padding-left: 13px;padding-right:8px;border: none;box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.35);border-radius: 8px;" placeholder="Message here..." />
+                    </div>
+                </div>
+            </center>
+        </div>
+    </div>
+    <div id="test2" class="col s12">
+        <div class="container" style="height:3rem;">
+        </div>
+        <h1>Coming Soon.....</h1>
+    </div>
+
+    <div id="test4" class="col s12">
+        <div class="container" style="height:3rem;">
+        </div>
+        <div style="max-width:480px;text-align:center;margin:0 auto;margin-bottom:-.5rem;">
+            <form class="player-search">
+                <div class="input-field">
+                    <input id="search" ng-model="searchText" type="search" required style="border:none;">
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons" style="margin-top:6px;">close</i>
+                </div>
+            </form>
+            <table class="table bordered highlight" style="margin-bottom:3rem;">
+                <thead>
+                    <tr>
+                        <th class="table-spacer">Name</th>
+                        <th>Position</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="selecter" ng-repeat="player in players | filter:searchText">
+                        <td class="table-spacer" style="text-transform:uppercase;">{{player.Name}}</td>
+                        <td style="text-transform:uppercase;">{{player.Position}}</td>
+                        <td>{{player.Rating}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <center style="color:#ccc;margin-bottom:3rem;">&copy; Litson Thomas</center>
+    </div>
+    <div id="test5" class="col s12">
+        <div class="container" style="height:3rem;">
+        </div>
+        <div class="row" style="padding:1.5rem;position:relative;z-index:-1;">
+            <div class="col s12 m3">
+                <div class="my-card card">
+                    <h5>Litson Thomas</h5>
+                    <div class="result" ng-repeat="lot in order">{{lot.litson}}</div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="my-card card">
+                    <h5>Jazir Ahammed</h5>
+                    <div class="result" ng-repeat="lot in order">{{lot.jasir}}</div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="my-card card">
+                    <h5>Edwin Jose</h5>
+                    <div class="result" ng-repeat="lot in order">{{lot.edwin}}</div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="my-card card">
+                    <h5>Alex Joseph</h5>
+                    <div class="result" ng-repeat="lot in order">{{lot.alex}}</div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="my-card card">
+                    <h5>Ferdinand John</h5>
+                    <div class="result" ng-repeat="lot in order">{{lot.ferdinand}}</div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="my-card card">
+                    <h5>Arun K Anil</h5>
+                    <div class="result" ng-repeat="lot in order">{{lot.kanil}}</div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="my-card card">
+                    <h5>Chandik Sharma</h5>
+                    <div class="result" ng-repeat="lot in order">{{lot.chandik}}</div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="my-card card">
+                    <h5>Alistar Fernandez</h5>
+                    <div class="result" ng-repeat="lot in order">{{lot.alistar}}</div>
+                </div>
+            </div>
+
+        </div>
+        <center>
+            <button id="order-generate" onclick="crunch()" class="waves-effect waves-light btn" style="background:#424242;margin-bottom:3rem;">Generate</button>
+        </center>
+        <center style="color:#ccc;">&copy; Litson Thomas</center>
+    </div>
+
+    <div id="test6" class="col s12">
+        <div class="container" style="height:5rem;">
+        </div>
+        <div style="max-width:480px;text-align:center;margin:0 auto;margin-bottom:-.5rem;">
+            <form>
+                <input class="my-input" type="text" placeholder="Name" id="player_name"></input>
+                </br>
+                <input class="my-input" type="text" placeholder="Position" id="player_position" style="text-transform:uppercase;"></input>
+                </br>
+                <input class="my-input" type="number" placeholder="Rating" id="player_rating"></input>
+                </br>
+                <button class="waves-effect waves-light btn" style="background:#424242;margin-bottom:3rem;" onclick="pushPlayer()">Add Player</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script src="js/manup.js"></script>
+<script src="js/pwabuilder-sw-register.js"></script>
+<script src="js/pwabuilder-sw.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/script.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script>
+    var config = {
+        apiKey: "AIzaSyAfR5rNX0oV7FYeFFIaXTZNV-Nzs6sgZGM",
+        authDomain: "auction-3bdea.firebaseapp.com",
+        databaseURL: "https://auction-3bdea.firebaseio.com",
+        projectId: "auction-3bdea",
+        storageBucket: "auction-3bdea.appspot.com",
+        messagingSenderId: "1034448457866"
+    };
+    firebase.initializeApp(config);
+</script>
+<script>
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    function googleSignin() {
+        firebase.auth()
+
+        .signInWithPopup(provider).then(function(result) {
+            var token = result.credential.accessToken;
+            user = result.user;
+            document.getElementById("login").className = "login-button-invisible";
+            document.getElementById("chat").style.display = 'inherit';
+            console.log(token)
+            console.log(user.displayName)
+        }).catch(function(error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+
+            console.log(error.code)
+            console.log(error.message)
+        });
+    }
+
+    function googleSignout() {
+        firebase.auth().signOut()
+
+        .then(function() {
+            document.getElementById("chat").style.display = 'none';
+            document.getElementById("login").className = "login-button";
+
+            Materialize.toast('Signed out', 1000);
+            console.log('Signout Succesfull')
+        }, function(error) {
+            console.log('Signout Failed')
+        });
+    }
+</script>
+
+</html>
