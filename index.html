@@ -150,7 +150,9 @@
 
                                 </tr>
                             </tbody>
-                        </table></span></div>
+                        </table></span>
+                        <a href="#" id="export" role='button'>download</a>
+                    </div>
                 </li>
                 <li>
                     <div class="collapsible-header">Edwin Jose</div>
@@ -389,14 +391,21 @@
         <div class="container" style="height:5rem;">
         </div>
         <div style="max-width:480px;text-align:center;margin:0 auto;margin-bottom:-.5rem;">
-            <form>
-                <input class="my-input" type="text" placeholder="Name" id="player_name"></input>
+            <div id="addPlayerAuthForm" style="display:inherit">
+                <form>
+                    <input class="my-input" type="password" placeholder="Password" id="addPlayerPass"></input>
+                    </br>
+                    <button id="playerAddAuthBtn" class="waves-effect waves-light btn" style="background:#01579B;margin-bottom:3rem;" onClick="addPlayerAuth()">Log In</button>
+                </form>
+            </div>
+            <form id="addPlayerForm" style="display:none;">
+                <input class="my-input" type="text" placeholder="Name" id="player_name_add"></input>
                 </br>
-                <input class="my-input" type="text" placeholder="Position" id="player_position" style="text-transform:uppercase;"></input>
+                <input class="my-input" type="text" placeholder="Position" id="player_position_add" style="text-transform:uppercase;"></input>
                 </br>
-                <input class="my-input" type="number" placeholder="Rating" id="player_rating"></input>
+                <input class="my-input" type="number" placeholder="Rating" id="player_rating_add"></input>
                 </br>
-                <button class="waves-effect waves-light btn" style="background:#01579B;margin-bottom:3rem;" onclick="pushPlayer()">Add Player</button>
+                <button class="waves-effect waves-light btn" style="background:#01579B;margin-bottom:3rem;" onClick="pushPlayer()">Add Player</button>
             </form>
             <center style="color:#ccc;margin-bottom:3rem;">&copy; Litson Thomas</center>
         </div>
@@ -472,6 +481,18 @@
             }
         });
     });
+</script>
+<script>
+    var addPlayer = false;
+    var pass = 'Litson@95CS';
+
+    function addPlayerAuth() {
+
+        if (document.getElementById("addPlayerPass").value == pass) {
+            document.getElementById("addPlayerAuthForm").style.display = 'none';
+            document.getElementById("addPlayerForm").style.display = 'inherit';
+        }
+    }
 </script>
 
 </html>

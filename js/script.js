@@ -307,10 +307,12 @@ function push() {
 }
 
 function pushPlayer() {
-    if (document.getElementById("player_name").value.trim() !== '' && document.getElementById("player_position").value.trim() && document.getElementById("player_rating").value.trim() !== '') {
-        var playerName = document.getElementById('player_name').value;
-        var playerPosition = document.getElementById('player_position').value;
-        var playerRating = document.getElementById('player_rating').value;
+
+    console.log(name.value);
+    if (document.getElementById('player_name_add').value.trim() !== '' && document.getElementById('player_position_add').value.trim() && document.getElementById('player_rating_add').value.trim() !== '') {
+        var playerName = document.getElementById('player_name_add').value;
+        var playerPosition = document.getElementById('player_position_add').value;
+        var playerRating = document.getElementById('player_rating_add').value;
         firebase.database().ref('playersList/').push({
             Name: playerName,
             Position: playerPosition,
@@ -321,8 +323,8 @@ function pushPlayer() {
         Materialize.toast('Type the Details Dude ;)', 1000);
     }
 
-    document.getElementById("player_name").value = '';
-    document.getElementById("player_position").value = '';
-    document.getElementById("player_rating").value = '';
-    document.getElementById("player_name").focus();
+    document.getElementById("player_name_add").value = '';
+    document.getElementById("player_position_add").value = '';
+    document.getElementById("player_rating_add").value = '';
+    document.getElementById("player_name_add").focus();
 }
